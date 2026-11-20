@@ -1,0 +1,104 @@
+/* Pocket Ledger: a paper-notebook look. Author: Christy Ramos */
+:root {
+    --paper: #f4efe6;
+    --paper-2: #fbf8f2;
+    --ink: #1d2a24;
+    --ink-soft: #5b6a62;
+    --rule: #d9d0bf;
+    --forest: #2f5d46;
+    --forest-dark: #234634;
+    --stamp: #b4442f;
+}
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+h1, h2, h3, .brand-name { font-family: 'Fraunces', Georgia, serif; font-weight: 800; letter-spacing: -.01em; }
+.mono, .amount, td.num, .stat-value { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+/* Layout */
+.shell { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+.side {
+    position: sticky; top: 0; height: 100vh;
+    background: var(--forest-dark); color: #e9efe9;
+    padding: 1.5rem 1.2rem; display: flex; flex-direction: column;
+    background-image: repeating-linear-gradient(0deg, transparent 0 31px, rgba(255,255,255,.04) 31px 32px);
+}
+.content { padding: 2rem clamp(1rem, 3vw, 2.5rem); max-width: 1100px; width: 100%; }
+
+.brand { display: flex; gap: .75rem; align-items: center; text-decoration: none; color: #fff; margin-bottom: 2rem; }
+.brand-mark {
+    width: 42px; height: 42px; display: grid; place-items: center;
+    background: var(--paper); color: var(--forest-dark);
+    font-family: 'Fraunces', serif; font-weight: 800; border-radius: 4px 12px 4px 12px;
+}
+.brand-name { display: block; font-size: 1.15rem; line-height: 1.1; }
+.brand-sub { display: block; font-size: .72rem; opacity: .7; text-transform: uppercase; letter-spacing: .14em; }
+
+.side-nav a {
+    display: flex; align-items: center; gap: .65rem;
+    padding: .6rem .8rem; margin-bottom: .25rem;
+    color: #cfe0d4; text-decoration: none; border-radius: 6px; font-weight: 500;
+}
+.side-nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+.side-nav a.on { background: var(--paper); color: var(--forest-dark); }
+.side-credit { margin-top: auto; font-size: .78rem; opacity: .75; line-height: 1.5; border-top: 1px dashed rgba(255,255,255,.25); padding-top: 1rem; }
+
+/* Buttons */
+.btn-stamp { background: var(--stamp); border-color: var(--stamp); color: #fff; font-weight: 600; }
+.btn-stamp:hover { background: #983724; border-color: #983724; color: #fff; }
+.btn-forest { background: var(--forest); border-color: var(--forest); color: #fff; font-weight: 600; }
+.btn-forest:hover { background: var(--forest-dark); border-color: var(--forest-dark); color: #fff; }
+
+/* Page head */
+.page-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--ink); padding-bottom: .75rem; }
+.page-head h1 { margin: 0; font-size: 2rem; }
+.page-head .kicker { font-size: .75rem; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-soft); }
+
+/* Paper cards */
+.sheet {
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px;
+    box-shadow: 3px 3px 0 var(--rule);
+}
+.sheet-head { padding: .8rem 1.1rem; border-bottom: 1px dashed var(--rule); font-family: 'Fraunces', serif; font-weight: 600; }
+
+.stat { padding: 1rem 1.1rem; }
+.stat-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-soft); }
+.stat-value { font-size: 1.55rem; font-weight: 600; margin-top: .2rem; }
+.stat.hero { background: var(--forest); color: #fff; border-color: var(--forest-dark); box-shadow: 3px 3px 0 var(--forest-dark); }
+.stat.hero .stat-label { color: #bcd3c4; }
+
+/* Ledger table */
+.ledger { margin: 0; --bs-table-bg: transparent; }
+.ledger thead th {
+    background: transparent; font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--ink-soft); border-bottom: 2px solid var(--ink); white-space: nowrap;
+}
+.ledger td { border-bottom: 1px solid var(--rule); vertical-align: middle; }
+.ledger tbody tr:hover td { background: rgba(47,93,70,.06); }
+.amount { font-weight: 600; white-space: nowrap; }
+.dot { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-right: .4rem; vertical-align: -1px; }
+.chip { display: inline-block; font-size: .72rem; padding: .15rem .55rem; border: 1px solid var(--rule); border-radius: 999px; background: #fff; font-family: 'IBM Plex Mono', monospace; }
+
+/* Budget bars */
+.bar-track { height: 10px; background: #e9e2d2; border-radius: 99px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 99px; }
+.over { color: var(--stamp); font-weight: 600; }
+
+/* Forms */
+.form-control, .form-select { background: #fff; border-color: var(--rule); border-radius: 4px; }
+.form-control:focus, .form-select:focus { border-color: var(--forest); box-shadow: 0 0 0 .2rem rgba(47,93,70,.18); }
+.form-label { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); font-weight: 600; }
+.alert-ledger { background: #e4efe6; border: 1px solid #b7d1bd; color: var(--forest-dark); }
+
+/* Mobile: sidebar becomes a top bar */
+@media (max-width: 991.98px) {
+    .shell { grid-template-columns: 1fr; }
+    .side { position: static; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; gap: .75rem; padding: 1rem; }
+    .brand { margin: 0; }
+    .side-nav { display: flex; gap: .25rem; flex-wrap: wrap; }
+    .side-nav a { margin: 0; padding: .4rem .65rem; }
+    .side .btn-stamp { width: auto !important; margin: 0 !important; }
+    .side-credit { display: none; }
+}
